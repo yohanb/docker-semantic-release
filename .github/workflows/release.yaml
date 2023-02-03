@@ -8,34 +8,36 @@ jobs:
     name: Release
     runs-on: ubuntu-latest
     steps:
-      -
-        name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
-      -
-        name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
-      -
-        name: Login to Docker Hub
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+#      -
+#        name: Set up QEMU
+#        uses: docker/setup-qemu-action@v2
+#      -
+#        name: Set up Docker Buildx
+#        uses: docker/setup-buildx-action@v2
+#      -
+#        name: Login to Docker Hub
+#        uses: docker/login-action@v2
+#        with:
+#          username: ${{ secrets.DOCKERHUB_USERNAME }}
+#          password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
         name: Checkout
         uses: actions/checkout@v3
-      -
-        name: Build and push
-        uses: docker/build-push-action@v4
-        with:
-          push: true
-          tags: ybelval/semantic-release:latest
+#      -
+#        name: Build and push
+#        uses: docker/build-push-action@v4
+#        with:
+#          push: true
+#          tags: ybelval/semantic-release:latest
       -
         name: Semantic Release
         uses: cycjimmy/semantic-release-action@v3
         with:
           extra_plugins: |
             @semantic-release/changelog
-            semantic-release-docker
+            @codedependant/semantic-release-docker
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          DOCKER_REGISTRY_USER: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKER_REGISTRY_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
