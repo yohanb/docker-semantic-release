@@ -49,7 +49,7 @@
     [
       "semantic-release-docker",
       {
-        "name": "deliveroo/semantic-release"
+        "name": "yohanb/semantic-release"
       }
     ]
   ]
