@@ -1,8 +1,2 @@
-FROM node:14-alpine
-RUN apk add --no-cache git openssh-client docker-cli
-COPY package.json .
-COPY package-lock.json .
-RUN npm set progress=false && \
-	npm config set depth 0 && \
-	npm install
-ENV PATH /node_modules/.bin:$PATH
+FROM nginx:latest
+COPY ./index.html /usr/share/nginx/html/index.html
