@@ -49,7 +49,7 @@
     [
       "@codedependant/semantic-release-docker",
       {
-        "name": "yohanb/semantic-release"
+        "dockerImage": "yohanb/semantic-release"
       }
     ]
   ]
